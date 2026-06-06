@@ -1,3 +1,8 @@
+import { getProducts } from "./api.js";
+import { renderLoadingState, renderProducts, renderProductsError } from "./products.js";
+
+const productsGrid = document.querySelector("#productsGrid");
+const productsCount = document.querySelector("#productsCount");
 const cartBadge = document.querySelector("#cartBadge");
 const checkoutButton = document.querySelector("#checkoutButton");
 const clearCartButton = document.querySelector("#clearCartButton");
@@ -17,3 +22,15 @@ function initializeLayoutState() {
 }
 
 initializeLayoutState();
+
+async function initializeProducts() {
+  try {
+    renderLoadingState(productsGrid, productsCount);
+    const products = await getProducts();
+    renderProducts(products, productsGrid, productsCount);
+  } catch (error) {
+    renderProductsError(productsGrid, productsCount);
+  }
+}
+
+initializeProducts();
