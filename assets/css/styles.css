@@ -223,6 +223,41 @@ a:hover {
   box-shadow: var(--app-shadow);
 }
 
+.product-detail {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+}
+
+.product-detail-image {
+  aspect-ratio: 1;
+  background: var(--app-surface-soft);
+  border: 1px solid var(--app-border);
+  border-radius: var(--app-radius);
+  object-fit: contain;
+  padding: 1rem;
+  width: 100%;
+}
+
+.product-detail-price {
+  color: var(--app-primary);
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.product-detail-description {
+  color: var(--app-muted);
+  line-height: 1.6;
+}
+
+.app-toast {
+  background: var(--app-text);
+  border: 0;
+  border-radius: var(--app-radius);
+  color: #ffffff;
+  box-shadow: var(--app-shadow);
+}
+
 .offcanvas {
   background: var(--app-surface);
 }
@@ -264,5 +299,9 @@ a:hover {
   .empty-state,
   .empty-cart {
     padding: 1.5rem 1rem;
+  }
+
+  .product-detail {
+    grid-template-columns: 1fr;
   }
 }

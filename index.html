@@ -83,6 +83,12 @@
       </div>
     </footer>
 
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+      <div class="toast app-toast" id="appToast" role="status" aria-live="polite" aria-atomic="true">
+        <div class="toast-body" id="appToastBody"></div>
+      </div>
+    </div>
+
     <div class="modal fade" id="productDetailModal" tabindex="-1" aria-labelledby="productDetailTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
@@ -95,7 +101,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-dark" id="addToCartButton">
+            <button type="button" class="btn btn-dark" id="addToCartButton" disabled>
               <i class="bi bi-cart-plus" aria-hidden="true"></i>
               <span class="ms-2">Agregar al carrito</span>
             </button>
