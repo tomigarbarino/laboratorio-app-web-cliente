@@ -1,0 +1,11 @@
+:root {
+  --app-bg: #f7f7f8;
+  --app-text: #1f2937;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--app-bg);
+  color: var(--app-text);
+}
+
