@@ -1,0 +1,21 @@
+.modal-content,
+.offcanvas {
+  border: 0;
+  border-radius: var(--app-radius);
+}
+
+.modal-content {
+  box-shadow: var(--app-shadow);
+}
+
+.offcanvas {
+  background: var(--app-surface);
+}
+
+.offcanvas-header {
+  border-bottom: 1px solid var(--app-border);
+}
+
+.cart-summary {
+  background: var(--app-surface);
+}

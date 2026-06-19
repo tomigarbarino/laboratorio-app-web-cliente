@@ -24,6 +24,26 @@ API sugerida para el desarrollo:
 
 - https://fakestoreapi.com/
 
+## Estructura del proyecto
+
+```text
+assets/
+  css/
+    base/
+    components/
+    utilities/
+  img/
+  js/
+    components/
+    services/
+    utils/
+```
+
+- `components`: renderizado y comportamiento de piezas visuales.
+- `services`: consumo de API y persistencia del carrito.
+- `utils`: funciones reutilizables.
+- `base`, `components` y `utilities`: estilos separados por responsabilidad.
+
 ## Autor
 
 - GitHub: `tomigarbarino`

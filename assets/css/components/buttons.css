@@ -1,0 +1,41 @@
+.btn {
+  border-radius: var(--app-radius);
+  font-weight: 700;
+}
+
+.btn:focus-visible,
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 0.2rem rgba(15, 118, 110, 0.2);
+}
+
+.btn-dark {
+  background: var(--app-primary);
+  border-color: var(--app-primary);
+}
+
+.btn-dark:hover,
+.btn-dark:focus-visible {
+  background: var(--app-primary-hover);
+  border-color: var(--app-primary-hover);
+}
+
+.btn-outline-dark {
+  border-color: var(--app-primary);
+  color: var(--app-primary);
+}
+
+.btn-outline-dark:hover,
+.btn-outline-dark:focus-visible {
+  background: var(--app-primary);
+  border-color: var(--app-primary);
+}
+
+.btn-outline-danger {
+  border-color: var(--app-danger);
+  color: var(--app-danger);
+}
+
+.cart-button {
+  min-height: 2.75rem;
+  width: 100%;
+}

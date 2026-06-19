@@ -1,7 +1,4 @@
-const priceFormatter = new Intl.NumberFormat("es-AR", {
-  style: "currency",
-  currency: "USD",
-});
+import { formatPrice } from "../utils/formatters.js";
 
 export function renderProductDetail(product, productDetailTitle, productDetailBody) {
   productDetailTitle.textContent = product.title;
@@ -23,7 +20,7 @@ export function renderProductDetail(product, productDetailTitle, productDetailBo
 
   const price = document.createElement("p");
   price.className = "product-detail-price mb-3";
-  price.textContent = priceFormatter.format(product.price);
+  price.textContent = formatPrice(product.price);
 
   const description = document.createElement("p");
   description.className = "product-detail-description mb-0";

@@ -1,0 +1,33 @@
+.text-bg-danger {
+  background: var(--app-accent) !important;
+}
+
+.loading-state {
+  border: 1px solid var(--app-border);
+  background: var(--app-surface);
+  border-radius: var(--app-radius);
+  padding: 2rem;
+}
+
+.empty-state,
+.empty-cart {
+  border: 1px solid var(--app-border);
+  background: var(--app-surface);
+  border-radius: var(--app-radius);
+  box-shadow: var(--app-shadow);
+  padding: 2rem;
+}
+
+.empty-state .bi,
+.empty-cart .bi {
+  color: var(--app-accent);
+  font-size: 2rem;
+}
+
+.app-toast {
+  background: var(--app-text);
+  border: 0;
+  border-radius: var(--app-radius);
+  color: #ffffff;
+  box-shadow: var(--app-shadow);
+}

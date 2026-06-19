@@ -1,0 +1,30 @@
+.app-navbar {
+  background: rgba(255, 255, 255, 0.94);
+  border-bottom: 1px solid rgba(217, 226, 222, 0.86);
+  box-shadow: 0 1px 0 rgba(23, 32, 38, 0.03);
+  backdrop-filter: blur(14px);
+}
+
+.navbar-brand {
+  font-weight: 800;
+}
+
+.catalog-header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.section-kicker {
+  color: var(--app-primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.app-footer {
+  background: var(--app-surface);
+  border-top: 1px solid var(--app-border);
+}

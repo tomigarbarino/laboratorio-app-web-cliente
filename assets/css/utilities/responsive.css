@@ -1,0 +1,30 @@
+@media (min-width: 992px) {
+  .cart-button {
+    width: auto;
+  }
+
+  .catalog-header {
+    max-width: 46rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  h1 {
+    font-size: 2.25rem;
+    line-height: 1.05;
+  }
+
+  .catalog-header {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .empty-state,
+  .empty-cart {
+    padding: 1.5rem 1rem;
+  }
+
+  .product-detail {
+    grid-template-columns: 1fr;
+  }
+}

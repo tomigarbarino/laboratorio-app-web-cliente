@@ -1,7 +1,7 @@
-import { addProductToCart, getCart, getCartTotalQuantity } from "./cart.js";
-import { getProducts } from "./api.js";
-import { renderProductDetail } from "./product-detail.js";
-import { renderLoadingState, renderProducts, renderProductsError } from "./products.js";
+import { renderProductDetail } from "./components/product-detail.js";
+import { renderLoadingState, renderProducts, renderProductsError } from "./components/products.js";
+import { addProductToCart, getCart, getCartTotalQuantity } from "./services/cart.js";
+import { getProducts } from "./services/products-api.js";
 
 const productsGrid = document.querySelector("#productsGrid");
 const productsCount = document.querySelector("#productsCount");

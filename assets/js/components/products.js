@@ -1,7 +1,4 @@
-const priceFormatter = new Intl.NumberFormat("es-AR", {
-  style: "currency",
-  currency: "USD",
-});
+import { formatPrice } from "../utils/formatters.js";
 
 export function renderLoadingState(productsGrid, productsCount) {
   productsCount.textContent = "Cargando...";
@@ -99,7 +96,7 @@ function createProductCard(product) {
 
   const price = document.createElement("p");
   price.className = "product-price mt-auto mb-3";
-  price.textContent = priceFormatter.format(product.price);
+  price.textContent = formatPrice(product.price);
 
   const button = document.createElement("button");
   button.className = "btn btn-outline-dark w-100";
