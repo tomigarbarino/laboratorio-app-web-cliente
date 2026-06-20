@@ -29,8 +29,9 @@ const appToastBody = document.querySelector("#appToastBody");
 
 let products = [];
 let selectedProduct = null;
-const productDetailModal = new bootstrap.Modal(productDetailModalElement);
-const appToast = new bootstrap.Toast(appToastElement, { delay: 2200 });
+const bootstrapApi = window.bootstrap;
+const productDetailModal = bootstrapApi?.Modal ? new bootstrapApi.Modal(productDetailModalElement) : null;
+const appToast = bootstrapApi?.Toast ? new bootstrapApi.Toast(appToastElement, { delay: 2200 }) : null;
 
 function initializeLayoutState() {
   updateCartState(getCart());
@@ -70,7 +71,7 @@ productsGrid.addEventListener("click", (event) => {
 
   renderProductDetail(selectedProduct, productDetailTitle, productDetailBody);
   addToCartButton.disabled = false;
-  productDetailModal.show();
+  productDetailModal?.show();
 });
 
 addToCartButton.addEventListener("click", () => {
@@ -80,7 +81,7 @@ addToCartButton.addEventListener("click", () => {
 
   const cart = addProductToCart(selectedProduct);
   updateCartState(cart);
-  productDetailModal.hide();
+  productDetailModal?.hide();
   showToast(`${selectedProduct.title} se agrego al carrito`);
 });
 
@@ -133,5 +134,5 @@ function updateCartBadge(cart) {
 
 function showToast(message) {
   appToastBody.textContent = message;
-  appToast.show();
+  appToast?.show();
 }
