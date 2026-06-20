@@ -17,6 +17,7 @@ const productsCount = document.querySelector("#productsCount");
 const cartBadge = document.querySelector("#cartBadge");
 const cartItems = document.querySelector("#cartItems");
 const cartTotal = document.querySelector("#cartTotal");
+const cartOffcanvasElement = document.querySelector("#cartOffcanvas");
 const checkoutButton = document.querySelector("#checkoutButton");
 const clearCartButton = document.querySelector("#clearCartButton");
 const productDetailModalElement = document.querySelector("#productDetailModal");
@@ -48,6 +49,10 @@ async function initializeProducts() {
 }
 
 initializeProducts();
+
+cartOffcanvasElement.addEventListener("show.bs.offcanvas", () => {
+  updateCartState(getCart());
+});
 
 productsGrid.addEventListener("click", (event) => {
   const detailButton = event.target.closest("[data-product-id]");
