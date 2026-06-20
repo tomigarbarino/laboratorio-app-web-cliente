@@ -1,11 +1,22 @@
+import { renderCart } from "./components/cart.js";
 import { renderProductDetail } from "./components/product-detail.js";
 import { renderLoadingState, renderProducts, renderProductsError } from "./components/products.js";
-import { addProductToCart, getCart, getCartTotalQuantity } from "./services/cart.js";
+import {
+  addProductToCart,
+  clearCart,
+  decreaseCartItem,
+  getCart,
+  getCartTotalQuantity,
+  increaseCartItem,
+  removeCartItem,
+} from "./services/cart.js";
 import { getProducts } from "./services/products-api.js";
 
 const productsGrid = document.querySelector("#productsGrid");
 const productsCount = document.querySelector("#productsCount");
 const cartBadge = document.querySelector("#cartBadge");
+const cartItems = document.querySelector("#cartItems");
+const cartTotal = document.querySelector("#cartTotal");
 const checkoutButton = document.querySelector("#checkoutButton");
 const clearCartButton = document.querySelector("#clearCartButton");
 const productDetailModalElement = document.querySelector("#productDetailModal");
@@ -21,15 +32,7 @@ const productDetailModal = new bootstrap.Modal(productDetailModalElement);
 const appToast = new bootstrap.Toast(appToastElement, { delay: 2200 });
 
 function initializeLayoutState() {
-  updateCartBadge(getCart());
-
-  if (checkoutButton) {
-    checkoutButton.disabled = true;
-  }
-
-  if (clearCartButton) {
-    clearCartButton.disabled = true;
-  }
+  updateCartState(getCart());
 }
 
 initializeLayoutState();
@@ -71,10 +74,51 @@ addToCartButton.addEventListener("click", () => {
   }
 
   const cart = addProductToCart(selectedProduct);
-  updateCartBadge(cart);
+  updateCartState(cart);
   productDetailModal.hide();
   showToast(`${selectedProduct.title} se agrego al carrito`);
 });
+
+cartItems.addEventListener("click", (event) => {
+  const actionButton = event.target.closest("[data-cart-action]");
+
+  if (!actionButton) {
+    return;
+  }
+
+  const productId = Number(actionButton.dataset.productId);
+  const action = actionButton.dataset.cartAction;
+  let cart = getCart();
+
+  if (action === "increase") {
+    cart = increaseCartItem(productId);
+  }
+
+  if (action === "decrease") {
+    cart = decreaseCartItem(productId);
+  }
+
+  if (action === "remove") {
+    cart = removeCartItem(productId);
+  }
+
+  updateCartState(cart);
+});
+
+clearCartButton.addEventListener("click", () => {
+  updateCartState(clearCart());
+  showToast("Se vacio el carrito");
+});
+
+checkoutButton.addEventListener("click", () => {
+  updateCartState(clearCart());
+  showToast("Compra finalizada correctamente");
+});
+
+function updateCartState(cart) {
+  updateCartBadge(cart);
+  renderCart(cart, cartItems, cartTotal, checkoutButton, clearCartButton);
+}
 
 function updateCartBadge(cart) {
   const totalQuantity = getCartTotalQuantity(cart);
