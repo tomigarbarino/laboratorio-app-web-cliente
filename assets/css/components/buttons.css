@@ -39,3 +39,8 @@
   min-height: 2.75rem;
   width: 100%;
 }
+
+.cart-button .badge {
+  font-size: 0.7rem;
+  min-width: 1.35rem;
+}

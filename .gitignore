@@ -4,3 +4,4 @@ node_modules/
 Thumbs.db
 .server.pid
 tmp-chrome-profile/
+.lazyweb/

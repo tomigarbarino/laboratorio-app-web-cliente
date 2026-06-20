@@ -6,6 +6,10 @@
   .catalog-header {
     max-width: 46rem;
   }
+
+  .navbar-collapse {
+    gap: 1rem;
+  }
 }
 
 @media (max-width: 575.98px) {
@@ -26,5 +30,14 @@
 
   .product-detail {
     grid-template-columns: 1fr;
+  }
+
+  .navbar-brand {
+    gap: 0.45rem;
+  }
+
+  .brand-mark {
+    width: 2rem;
+    height: 2rem;
   }
 }

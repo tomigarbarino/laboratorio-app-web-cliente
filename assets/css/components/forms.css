@@ -1,5 +1,9 @@
 .search-form {
-  width: min(100%, 28rem);
+  width: min(100%, 34rem);
+}
+
+.search-control {
+  position: relative;
 }
 
 .input-group-text,
@@ -11,11 +15,45 @@
   color: var(--app-muted);
 }
 
+.search-icon {
+  border-right: 0;
+}
+
 .form-control {
   min-height: 2.75rem;
+}
+
+.search-control .form-control {
+  border-left: 0;
+  border-right: 0;
+  padding-right: 2.75rem;
 }
 
 .form-control:focus {
   border-color: var(--app-primary);
   box-shadow: 0 0 0 0.2rem rgba(15, 118, 110, 0.16);
+}
+
+.search-clear-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  min-height: 2.75rem;
+  background: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-left: 0;
+  color: var(--app-muted);
+}
+
+.search-clear-button:hover,
+.search-clear-button:focus-visible {
+  background: var(--app-surface-soft);
+  color: var(--app-text);
+}
+
+.search-clear-button.is-hidden {
+  color: transparent;
+  pointer-events: none;
+  visibility: hidden;
 }

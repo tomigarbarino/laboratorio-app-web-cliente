@@ -14,6 +14,9 @@ import { getProducts } from "./services/products-api.js";
 
 const productsGrid = document.querySelector("#productsGrid");
 const productsCount = document.querySelector("#productsCount");
+const searchForm = document.querySelector("#searchForm");
+const productSearch = document.querySelector("#productSearch");
+const clearSearchButton = document.querySelector("#clearSearchButton");
 const cartBadge = document.querySelector("#cartBadge");
 const cartItems = document.querySelector("#cartItems");
 const cartTotal = document.querySelector("#cartTotal");
@@ -29,6 +32,7 @@ const appToastBody = document.querySelector("#appToastBody");
 
 let products = [];
 let selectedProduct = null;
+let activeSearchTerm = "";
 const bootstrapApi = window.bootstrap;
 const productDetailModal = bootstrapApi?.Modal ? new bootstrapApi.Modal(productDetailModalElement) : null;
 const appToast = bootstrapApi?.Toast ? new bootstrapApi.Toast(appToastElement, { delay: 2200 }) : null;
@@ -43,13 +47,35 @@ async function initializeProducts() {
   try {
     renderLoadingState(productsGrid, productsCount);
     products = await getProducts();
-    renderProducts(products, productsGrid, productsCount);
+    renderVisibleProducts();
   } catch (error) {
     renderProductsError(productsGrid, productsCount);
   }
 }
 
 initializeProducts();
+
+searchForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  activeSearchTerm = productSearch.value.trim();
+  renderVisibleProducts();
+});
+
+productSearch.addEventListener("input", () => {
+  activeSearchTerm = productSearch.value.trim();
+  toggleClearSearchButton();
+  renderVisibleProducts();
+});
+
+clearSearchButton.addEventListener("click", () => {
+  productSearch.value = "";
+  activeSearchTerm = "";
+  toggleClearSearchButton();
+  renderVisibleProducts();
+  requestAnimationFrame(() => {
+    productSearch.focus({ preventScroll: true });
+  });
+});
 
 cartOffcanvasElement.addEventListener("show.bs.offcanvas", () => {
   updateCartState(getCart());
@@ -124,6 +150,34 @@ checkoutButton.addEventListener("click", () => {
 function updateCartState(cart) {
   updateCartBadge(cart);
   renderCart(cart, cartItems, cartTotal, checkoutButton, clearCartButton);
+}
+
+function renderVisibleProducts() {
+  renderProducts(getFilteredProducts(), productsGrid, productsCount);
+}
+
+function getFilteredProducts() {
+  if (!activeSearchTerm) {
+    return products;
+  }
+
+  const normalizedTerm = normalizeText(activeSearchTerm);
+
+  return products.filter((product) => {
+    const searchableText = normalizeText(`${product.title} ${product.description} ${product.category}`);
+    return searchableText.includes(normalizedTerm);
+  });
+}
+
+function toggleClearSearchButton() {
+  const shouldHide = productSearch.value.length === 0;
+  clearSearchButton.classList.toggle("is-hidden", shouldHide);
+  clearSearchButton.disabled = shouldHide;
+  clearSearchButton.setAttribute("aria-hidden", String(shouldHide));
+}
+
+function normalizeText(value) {
+  return value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
 
 function updateCartBadge(cart) {

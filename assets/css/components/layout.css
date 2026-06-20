@@ -6,7 +6,21 @@
 }
 
 .navbar-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
   font-weight: 800;
+}
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  background: var(--app-primary);
+  border-radius: var(--app-radius);
+  color: #ffffff;
 }
 
 .catalog-header {
